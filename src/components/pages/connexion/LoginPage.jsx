@@ -1,7 +1,7 @@
 import { Facebook } from 'lucide-react';
 import { Phone} from 'lucide-react';
 import banner2 from '../../../assets/img/banner/banner-img2.png';
-
+import { Dashboard } from "../Dashboard";
 export default function LoginPage() {
   return (
     <div className="flex min-h-screen">
@@ -17,7 +17,7 @@ export default function LoginPage() {
         <div className='rounded-lg shadow-lg overflow-hidden p-8'>
         <h2 className="text-3xl font-bold text-gray-900 text-center">Connexion</h2>
         
-        <form className="mt-6">
+        <form className="mt-6" action='/dashboard'> 
           <div>
             <label className="block text-gray-700">Email</label>
             <input 

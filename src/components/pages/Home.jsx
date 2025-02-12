@@ -1,8 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Navbar } from '../layout/Navbar';
-import { BookOpen, Users, Video, Award, ArrowRight, ClipboardList, RedoDot, FileText, Check, Clock, Star, BookOpenCheck, VideoIcon, Download } from 'lucide-react';
+import { BookOpen, Users, Video, Award, ArrowRight, ClipboardList, RedoDot, FileText, Check, Clock, Star, BookOpenCheck, VideoIcon, Download, Heart, GraduationCap, DownloadIcon } from 'lucide-react';
 import LoginPage from './connexion/LoginPage';
+import  CoursesSection  from './sections/CoursesSection';
 //Importation des fichiers css
 import '../../assets/css/bootstrap.min.css';
 import '../../assets/css/animate.min.css';
@@ -119,302 +120,162 @@ export default function Home(){
                 </div>
             </div>
 
-            {/* Section Cours populaire*/}
-            <div className="courses-area ptb-100 ">
-                <div className="container">
-                <div className="section-title">
-                <span className="sub-title" style={{'color': 'indigo'}}>Devenez meilleur avec nous</span>
-                <h2>Les cours populaires d'e-Learing</h2>
-                <p className='text-gray-600'>Explorez tous nos cours et choisissez ceux qui vous conviennent pour vous inscrire et commencer à apprendre avec nous ! Nous vous assurons que vous ne le regretterez jamais !</p>
-                </div>
-
-                    <div className="row justify-content-center">
-                        <div className="col-lg-4 col-md-6">
-                            <div className="single-courses-box">
-                                <div className="courses-image">
-                                    <a href="single-course-1.html" className="d-block image">
-                                        {/* <img src={img1} alt="image"/> */}
-                                        <video width="100%" height="auto" controls poster={img1}>
-                                        <source src="" type="video/mp4"  />
-                                        Désolé, votre navigateur ne prend pas en charge la balise vidéo.
-                                        </video>
-                                    </a> 
-                                    <a href="single-course-1.html" className="fav"><i className="flaticon-heart"></i></a>
-                                    <div className="price shadow">CM1</div>
-                                </div>
-                                <div className="courses-content">
-                                    <div className="course-author d-flex align-items-center">
-                                        <img src={user1} className="rounded-circle text-primary" alt="image"/>
-                                        <span style={{'color': 'indigo'}}>Alex Morgan</span>
-                                    </div>
-                                    <h3><a href="single-course-1.html">Deep Learning a-z™: Hands-on Artificial Neural Networks</a></h3>
-                                    <p>This master level course is for you if you are looking to learn the DL & ANN topics in and out within a short time!</p>
-                                    <ul className="courses-box-footer d-flex justify-content-between align-items-center">
-                                        <li><i className='flaticon-agenda text-primary'></i> Cours Primaire</li>
-                                        <li><i className='flaticon-people text-primary'></i> Mathématques</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-lg-4 col-md-6">
-                            <div className="single-courses-box">
-                                <div className="courses-image">
-                                    <a href="single-course-1.html" className="d-block image">
-                                        {/* <img src={img2} alt="image"/> */}
-                                        <video width="100%" height="auto" controls poster={img2}>
-                                        <source src="" type="video/mp4"  />
-                                        Désolé, votre navigateur ne prend pas en charge la balise vidéo.
-                                        </video>
-                                    </a>
-                                    <a href="single-course-1.html" className="fav"><i className="flaticon-heart"></i></a>
-                                    <div className="price shadow">CM2</div>
-                                </div>
-                                <div className="courses-content">
-                                    <div className="course-author d-flex align-items-center">
-                                        <img src={user2} className="rounded-circle text-primary" alt="image"/>
-                                        <span style={{'color': 'indigo'}}>Sarah Taylor</span>
-                                    </div>
-                                    <h3><a href="single-course-1.html">Java Programming Masterclass for Software Developers</a></h3>
-                                    <p>Java is the most stable and vastly uses a top programming language for mobile, web, and desktop environments.</p>
-                                    <ul className="courses-box-footer d-flex justify-content-between align-items-center">
-                                        <li><i className='flaticon-agenda text-primary'></i> Cours primaire</li>
-                                        <li><i className='flaticon-people text-primary'></i> Mathématiques</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-lg-4 col-md-6">
-                            <div className="single-courses-box">
-                                <div className="courses-image">
-                                    <a href="single-course-1.html" className="d-block image">
-                                        {/* <img src={img3} alt="image"/> */}
-                                        <video width="100%" height="auto" controls poster={img3}>
-                                        <source src="" type="video/mp4"  />
-                                        Désolé, votre navigateur ne prend pas en charge la balise vidéo.
-                                        </video>
-                                    </a>
-                                    <a href="single-course-1.html" className="fav"><i className="flaticon-heart"></i></a>
-                                    <div className="price shadow">CM2</div>
-                                </div>
-                                <div className="courses-content">
-                                    <div className="course-author d-flex align-items-center">
-                                        <img src={user3} className="rounded-circle" alt="image"/>
-                                        <span style={{'color': 'indigo'}}>David Warner</span>
-                                    </div>
-                                    <h3><a href="single-course-1.html">The Data Science Course 2025: Complete Data Science Bootcamp</a></h3>
-                                    <p>We designed the Data Science Bootcamp course to give you the best learning experience within a short time.</p>
-                                    <ul className="courses-box-footer d-flex justify-content-between align-items-center">
-                                        <li><i className='flaticon-agenda text-primary'></i> Cours Primaire</li>
-                                        <li><i className='flaticon-people text-primary'></i> EST</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-lg-4 col-md-6">
-                            <div className="single-courses-box">
-                                <div className="courses-image">
-                                    <a href="single-course-1.html" className="d-block image">
-                                        {/* <img src={img1} alt="image"/> */}
-                                        <video width="100%" height="auto" controls poster={img1}>
-                                        <source src="" type="video/mp4"  />
-                                        Désolé, votre navigateur ne prend pas en charge la balise vidéo.
-                                        </video>
-                                    </a> 
-                                    <a href="single-course-1.html" className="fav"><i className="flaticon-heart"></i></a>
-                                    <div className="price shadow">CM2</div>
-                                </div>
-                                <div className="courses-content">
-                                    <div className="course-author d-flex align-items-center">
-                                        <img src={user1} className="rounded-circle" alt="image"/>
-                                        <span style={{'color': 'indigo'}}>Alex Morgan</span>
-                                    </div>
-                                    <h3><a href="single-course-1.html">Deep Learning a-z™: Hands-on Artificial Neural Networks</a></h3>
-                                    <p>This master level course is for you if you are looking to learn the DL & ANN topics in and out within a short time!</p>
-                                    <ul className="courses-box-footer d-flex justify-content-between align-items-center">
-                                        <li><i className='flaticon-agenda text-primary'></i>Cours primaire</li>
-                                        <li><i className='flaticon-people text-primary'></i> ES</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-lg-4 col-md-6">
-                            <div className="single-courses-box">
-                                <div className="courses-image">
-                                    <a href="single-course-1.html" className="d-block image">
-                                        {/* <img src={img2} alt="image"/> */}
-                                        <video width="100%" height="auto" controls poster={img2}>
-                                        <source src="" type="video/mp4"  />
-                                        Désolé, votre navigateur ne prend pas en charge la balise vidéo.
-                                        </video>
-                                    </a>
-                                    <a href="single-course-1.html" className="fav"><i className="flaticon-heart"></i></a>
-                                    <div className="price shadow">3ieme</div>
-                                </div>
-                                <div className="courses-content">
-                                    <div className="course-author d-flex align-items-center">
-                                        <img src={user2} className="rounded-circle" alt="image"/>
-                                        <span style={{'color': 'indigo'}}>Sarah Taylor</span>
-                                    </div>
-                                    <h3><a href="single-course-1.html">Java Programming Masterclass for Software Developers</a></h3>
-                                    <p>Java is the most stable and vastly uses a top programming language for mobile, web, and desktop environments.</p>
-                                    <ul className="courses-box-footer d-flex justify-content-between align-items-center">
-                                        <li><i className='flaticon-agenda text-primary'></i> Cours secondaire</li>
-                                        <li><i className='flaticon-people text-primary'></i> Mathématiques</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-lg-4 col-md-6">
-                            <div className="single-courses-box">
-                                <div className="courses-image">
-                                    <a href="single-course-1.html" className="d-block image">
-                                        {/* <img src={img3} alt="image"/> */}
-                                        <video width="100%" height="auto" controls poster={img3}>
-                                        <source src="" type="video/mp4"  />
-                                        Désolé, votre navigateur ne prend pas en charge la balise vidéo.
-                                        </video>
-                                    </a>
-                                    <a href="single-course-1.html" className="fav"><i className="flaticon-heart"></i></a>
-                                    <div className="price shadow">3ieme</div>
-                                </div>
-                                <div className="courses-content">
-                                    <div className="course-author d-flex align-items-center">
-                                        <img src={user3} className="rounded-circle" alt="image"/>
-                                        <span style={{'color': 'indigo'}}> David Warner</span>
-                                    </div>
-                                    <h3><a href="single-course-1.html">The Data Science Course 2025: Complete Data Science Bootcamp</a></h3>
-                                    <p>We designed the Data Science Bootcamp course to give you the best learning experience within a short time.</p>
-                                    <ul className="courses-box-footer d-flex justify-content-between align-items-center">
-                                        <li><i className='flaticon-agenda text-primary'></i> Cours secondaire</li>
-                                        <li><i className='flaticon-people text-primary'></i>SVT</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-            </div>
+            <CoursesSection />
 
             {/* Fin de la section des cours*/}
 
             {/* Section quelque td */}
-            <div className="courses-area ptb-20">
-                <div className="container">
-                    <div className="section-title">
-                        <h2>Quelques de nos Travaux pratiques</h2>
-                        <p>Explorez les travaux pratiques que proposent nos enseignants</p>
+            <div className="py-24 bg-white">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="text-center mb-16">
+                <h2 className="text-3xl font-bold text-gray-900">
+                  Travaux Dirigés
+                </h2>
+                <p className="mt-4 text-xl text-gray-600">
+                  Explorez nos TD soigneusement préparés par nos enseignants experts
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {/* TD Cards */}
+                <div className="bg-white rounded-xl shadow-lg transition-transform duration-300 hover:scale-105">
+                  <div className="p-6">
+                    <div className="flex justify-between items-start">
+                      <div className="w-14 h-14 bg-indigo-100 rounded-xl flex items-center justify-center">
+                        <FileText className="w-8 h-8 text-indigo-600" />
+                      </div>
+                      <button className="text-gray-400 hover:text-red-500 transition-colors">
+                        <Heart className="w-6 h-6" />
+                      </button>
                     </div>
-
-                    <div className="row justify-content-center">
-                        {/* Exemple de TD 1 */}
-                        <div className="col-lg-4 col-md-6">
-                            <div className="single-courses-box">
-                                <div className="courses-image">
-                                    <a href="td1.pdf" className="d-block image">
-                                        <i className="flaticon-pdf text-primary" style={{fontSize: "50px"}}></i>
-                                    </a>
-                                    <a href="td1.pdf" className="fav"><i className="flaticon-heart"></i></a>
-                                </div>
-                                <div className="courses-content">
-                                    <div className="course-author d-flex align-items-center">
-                                        <img src={user1} className="rounded-circle text-primary" alt="image"/>
-                                        <span style={{'color': 'indigo'}}>Alex Morgan</span>
-                                    </div>
-                                    
-                                    <h3> <a href="td1.pdf">Calcul Mental</a></h3>
-                                    <p>Ce TD vous aidera à améliorer vos compétences en calcul mental, idéal pour les élèves de niveau primaire.</p>
-                                    <ul className="courses-box-footer d-flex justify-content-between align-items-center">
-                                        <li><i className='flaticon-agenda text-primary'></i> Cours Primaire</li>
-                                        <li><i className='flaticon-people text-primary'></i> Mathématiques</li>
-                                    </ul>
-                                </div>
-                            </div>
+                    <div className="mt-6">
+                      <div className="flex items-center space-x-3 mb-4">
+                        <img
+                          src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                          alt="Alex Morgan"
+                          className="w-10 h-10 rounded-full"
+                        />
+                        <div>
+                          <p className="text-sm font-semibold text-gray-900">Alex Morgan</p>
+                          <p className="text-sm text-gray-500">Mathématiques</p>
                         </div>
-
-                        {/* Exemple de TD 2 */}
-                        <div className="col-lg-4 col-md-6">
-                            <div className="single-courses-box">
-                                <div className="courses-image">
-                                    <a href="td2.pdf" className="d-block image">
-                                        <i className="flaticon-pdf text-primary" style={{fontSize: "50px"}}></i>
-                                    </a>
-                                    <a href="td2.pdf" className="fav"><i className="flaticon-heart"></i></a>
-                                </div>
-                                <div className="courses-content">
-                                    <div className="course-author d-flex align-items-center">
-                                        <img src={user2} className="rounded-circle text-primary" alt="image"/>
-                                        <span style={{'color': 'indigo'}}>Sarah Taylor</span>
-                                    </div>
-                                    <h3> <a href="td2.pdf">Les Équations de Second degré</a></h3>
-                                    <p>Apprenez à résoudre des équations de second degré avec des exercices pratiques dans ce TD.</p>
-                                    <ul className="courses-box-footer d-flex justify-content-between align-items-center">
-                                        <li><i className='flaticon-agenda text-primary'></i> Cours Secondaire</li>
-                                        <li><i className='flaticon-people text-primary'></i> Mathématiques</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Exemple de TD 3 */}
-                        <div className="col-lg-4 col-md-6">
-                            <div className="single-courses-box">
-                                <div className="courses-image">
-                                    <a href="td3.pdf" className="d-block image">
-                                        <i className="flaticon-pdf text-primary" style={{fontSize: "50px"}}></i>
-                                    </a>
-                                    <a href="td3.pdf" className="fav"><i className="flaticon-heart"></i></a>
-                                </div>
-                                <div className="courses-content">
-                                    <div className="course-author d-flex align-items-center">
-                                        <img src={user3} className="rounded-circle" alt="image"/>
-                                        <span style={{'color': 'indigo'}}>David Warner</span>
-                                    </div>
-                                    <h3><a href="td3.pdf">Introduction à la Programmation</a></h3>
-                                    <p>Ce TD est destiné aux étudiants universitaires qui souhaitent débuter en programmation avec Python.</p>
-                                    <ul className="courses-box-footer d-flex justify-content-between align-items-center">
-                                        <li><i className='flaticon-agenda text-primary'></i> Cours Universitaire</li>
-                                        <li><i className='flaticon-people text-primary'></i> Informatique</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Exemple de TD 4 */}
-                        <div className="col-lg-4 col-md-6">
-                            <div className="single-courses-box">
-                                <div className="courses-image">
-                                    <a href="td4.pdf" className="d-block image">
-                                        <i className="flaticon-pdf text-primary" style={{fontSize: "50px"}}></i>
-                                    </a>
-                                    <a href="td4.pdf" className="fav"><i className="flaticon-heart"></i></a>
-                                </div>
-                                <div className="courses-content">
-                                    <div className="course-author d-flex align-items-center">
-                                        <img src={user1} className="rounded-circle" alt="image"/>
-                                        <span style={{'color': 'indigo'}}>Alex Morgan</span>
-                                    </div>
-                                    <h3><a href="td4.pdf">Géométrie</a></h3>
-                                    <p>Un TD complet pour maîtriser la géométrie dans le cadre du programme de lycée.</p>
-                                    <ul className="courses-box-footer d-flex justify-content-between align-items-center">
-                                        <li><i className='flaticon-agenda text-primary'></i> Cours Lycée</li>
-                                        <li><i className='flaticon-people text-primary'></i> Mathématiques</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
+                      </div>
+                      <h3 className="text-xl font-bold text-gray-900 mb-2">Calcul Mental</h3>
+                      <p className="text-gray-600 mb-6">Améliorez vos compétences en calcul mental avec des exercices adaptés au niveau primaire.</p>
+                      <div className="flex items-center justify-between">
+                        <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800">
+                          <GraduationCap className="w-4 h-4 mr-2" />
+                          Cours Primaire
+                        </span>
+                        <a 
+                          href="/td1.pdf" 
+                          className="inline-flex items-center text-indigo-600 hover:text-indigo-800"
+                        >
+                          <DownloadIcon className="w-5 h-5 mr-2" />
+                          Télécharger
+                        </a>
+                      </div>
                     </div>
-                    <div className="col-lg-12 col-md-12">
-                            <div className="courses-info mb-2">
-                            <p>Profitez des méthodes d'apprentissage de haute qualité et atteignez des compétences de niveau supérieur ! <a href="" >Inscrivez-vous dès maintenant !</a>.</p>
-                            </div>
-                        </div>
-                
+                  </div>
                 </div>
+                <div className="bg-white rounded-xl shadow-lg transition-transform duration-300 hover:scale-105">
+                  <div className="p-6">
+                    <div className="flex justify-between items-start">
+                      <div className="w-14 h-14 bg-indigo-100 rounded-xl flex items-center justify-center">
+                        <FileText className="w-8 h-8 text-indigo-600" />
+                      </div>
+                      <button className="text-gray-400 hover:text-red-500 transition-colors">
+                        <Heart className="w-6 h-6" />
+                      </button>
+                    </div>
+                    <div className="mt-6">
+                      <div className="flex items-center space-x-3 mb-4">
+                        <img
+                          src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                          alt="Alex Morgan"
+                          className="w-10 h-10 rounded-full"
+                        />
+                        <div>
+                          <p className="text-sm font-semibold text-gray-900">Alex Morgan</p>
+                          <p className="text-sm text-gray-500">Mathématiques</p>
+                        </div>
+                      </div>
+                      <h3 className="text-xl font-bold text-gray-900 mb-2">Calcul Mental</h3>
+                      <p className="text-gray-600 mb-6">Améliorez vos compétences en calcul mental avec des exercices adaptés au niveau primaire.</p>
+                      <div className="flex items-center justify-between">
+                        <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800">
+                          <GraduationCap className="w-4 h-4 mr-2" />
+                          Cours Primaire
+                        </span>
+                        <a 
+                          href="/td1.pdf" 
+                          className="inline-flex items-center text-indigo-600 hover:text-indigo-800"
+                        >
+                          <DownloadIcon className="w-5 h-5 mr-2" />
+                          Télécharger
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-white rounded-xl shadow-lg transition-transform duration-300 hover:scale-105">
+                  <div className="p-6">
+                    <div className="flex justify-between items-start">
+                      <div className="w-14 h-14 bg-indigo-100 rounded-xl flex items-center justify-center">
+                        <FileText className="w-8 h-8 text-indigo-600" />
+                      </div>
+                      <button className="text-gray-400 hover:text-red-500 transition-colors">
+                        <Heart className="w-6 h-6" />
+                      </button>
+                    </div>
+                    <div className="mt-6">
+                      <div className="flex items-center space-x-3 mb-4">
+                        <img
+                          src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                          alt="Alex Morgan"
+                          className="w-10 h-10 rounded-full"
+                        />
+                        <div>
+                          <p className="text-sm font-semibold text-gray-900">Alex Morgan</p>
+                          <p className="text-sm text-gray-500">Mathématiques</p>
+                        </div>
+                      </div>
+                      <h3 className="text-xl font-bold text-gray-900 mb-2">Calcul Mental</h3>
+                      <p className="text-gray-600 mb-6">Améliorez vos compétences en calcul mental avec des exercices adaptés au niveau primaire.</p>
+                      <div className="flex items-center justify-between">
+                        <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800">
+                          <GraduationCap className="w-4 h-4 mr-2" />
+                          Cours Primaire
+                        </span>
+                        <a 
+                          href="/td1.pdf" 
+                          className="inline-flex items-center text-indigo-600 hover:text-indigo-800"
+                        >
+                          <DownloadIcon className="w-5 h-5 mr-2" />
+                          Télécharger
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* More TD cards... */}
+              </div>
+
+              <div className="text-center mt-12">
+                <p className="text-gray-600 mb-6">
+                  Accédez à tous nos TD et améliorez vos compétences dès aujourd'hui !
+                </p>
+                <button className="inline-flex items-center px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors">
+                  Voir tous les TD
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </button>
+              </div>
+            </div>
             </div>
             {/* Fin section td */}
+            
+            
 
             {/* Section Abonnement */}
             <div className="py-24 bg-gray-50">
