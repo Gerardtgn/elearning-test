@@ -1,23 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Navbar } from '../layout/Navbar';
+import  Navbar  from '../layout/Navbar';
 import { BookOpen, Users, Video, Award, ArrowRight, ClipboardList, RedoDot, FileText, Check, Clock, Star, BookOpenCheck, VideoIcon, Download, Heart, GraduationCap, DownloadIcon } from 'lucide-react';
 import LoginPage from './connexion/LoginPage';
 import  CoursesSection  from './sections/CoursesSection';
 //Importation des fichiers css
-import '../../assets/css/bootstrap.min.css';
-import '../../assets/css/animate.min.css';
-import '../../assets/css/flaticon.css';
-import '../../assets/css/owl.theme.default.min.css';
-import '../../assets/css/rangeSlider.min.css';
-import '../../assets/css/meanmenu.min.css';
-import '../../assets/css/responsive.css';
-import '../../assets/css/style.css';
-import '../../assets/css/odometer.min.css';
-import '../../assets/css/magnific-popup.min.css';
-import '../../assets/css/nice-select.min.css';
-import '../../assets/css/rangeSlider.min.css';
-import '../../assets/css/boxicons.min.css';
+import '../layout/styles';
 //Importation de quelques images 
 //A rétirer plustard
 import img1 from '../../assets/img/courses/img1.jpg';
@@ -431,7 +419,7 @@ export default function Home(){
                                         <div className="icon">
                                             <i className='bx bx-map text-primary'></i>
                                         </div>
-                                        <h3>Our Address</h3>
+                                        <h3>Notre adresse</h3>
                                         <p>2750 Quadra Street Victoria Road, New York, Canada</p>
                                     </li>
                                     <li>
@@ -446,9 +434,9 @@ export default function Home(){
                                         <div className="icon">
                                             <i className='bx bx-time-five text-primary' ></i>
                                         </div>
-                                        <h3>Hours of Operation</h3>
-                                        <p>Monday - Friday: 09:00 - 20:00</p>
-                                        <p>Sunday & Saturday: 10:30 - 22:00</p>
+                                        <h3>Disponibilité</h3>
+                                        <p>Lundi-dimanche 24h/24</p>
+                                        
                                     </li>
                                 </ul>
                             </div>

@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host 0.0.0.0",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
@@ -12,10 +12,17 @@
   "dependencies": {
     "@headlessui/react": "^1.7.18",
     "@supabase/supabase-js": "^2.39.7",
+    "axios": "^1.7.9",
+    "date-fns": "^4.1.0",
+    "framer-motion": "^12.4.4",
+    "jquerry": "^0.0.1-security",
+    "jquery": "^3.7.1",
     "lucide-react": "^0.344.0",
+    "owl.carousel": "^2.3.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.22.2",
+    "sweetalert2": "^11.17.2",
     "zustand": "^4.5.2"
   },
   "devDependencies": {

@@ -4,11 +4,11 @@ import { Sidebar } from './components/Sidebar';
 
 export function DashboardLayout() {
   return (
-    <div className="flex h-screen bg-gray-50">
+    <div className="flex">
       <Sidebar />
-      <main className="flex-1 overflow-y-auto">
+      <div className="flex-1 p-4">
         <Outlet />
-      </main>
+      </div>
     </div>
   );
 }
