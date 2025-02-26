@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowRight, BookOpen, Video, Users, Award, HeartHandshake } from 'lucide-react';
+import Titre from './Titre';
 
 const Service = () => {
   const services = [
@@ -31,7 +32,11 @@ const Service = () => {
   ];
 
   return (
+    <div className="min-h-screen bg-gray-50">
+        {/* En-tête */}
+    <Titre page={'Nos services'} titre={'Decouvrez ce que nous proposons à nos apprenants'}/>
     <div className="max-w-6xl mx-auto p-6">
+      
       <div className="text-center mb-16">
         {/* <h1 className="text-4xl font-bold mb-6">Nos Services</h1> */}
         <h2 className="text-2xl mb-8" style={{ color: '#fe4a55' }}>
@@ -88,6 +93,9 @@ const Service = () => {
         </div>
       </div>
     </div>
+
+    </div>
+    
   );
 };
 

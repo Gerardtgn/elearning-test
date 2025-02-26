@@ -4,87 +4,96 @@ import img3 from '../../assets/img/courses/img3.jpg';
 import user1 from '../../assets/img/user/user1.jpg';
 import user2 from '../../assets/img/user/user2.jpg';
 import user3 from '../../assets/img/user/user3.jpg';
-
+import CoursComponent from './CoursComponent';
+import { useState } from 'react';
 export default function Cours() {
+    const [coursFiltres, setCoursFiltres] = useState([
+        {
+          id: 1,
+          titre: "Introduction à la physique quantique",
+          enseignant: "Prof. Martin Dubois",
+          matiere: "Physique",
+          classe: "Terminale S",
+          vignette: img1,
+          duree: "45 min",
+          vues: 1245
+        },
+        {
+          id: 2,
+          titre: "Les équations du second degré",
+          enseignant: "Dr. Sophie Laurent",
+          matiere: "Mathématiques",
+          classe: "Seconde",
+          vignette: img2,
+          duree: "32 min",
+          vues: 987
+        },
+        {
+          id: 3,
+          titre: "La Révolution française",
+          enseignant: "Prof. Alexandre Moreau",
+          matiere: "Histoire",
+          classe: "4ème",
+          vignette: img3,
+          duree: "58 min",
+          vues: 2341
+        },
+        {
+          id: 4,
+          titre: "L'accord du participe passé",
+          enseignant: "Mme. Clara Benoit",
+          matiere: "Français",
+          classe: "6ème",
+          vignette: img1,
+          duree: "25 min",
+          vues: 1678
+        },
+        {
+          id: 5,
+          titre: "Les réactions d'oxydoréduction",
+          enseignant: "Dr. Thomas Mercier",
+          matiere: "Chimie",
+          classe: "Première S",
+          vignette: img2,
+          duree: "41 min",
+          vues: 893
+        },
+        {
+          id: 6,
+          titre: "Introduction à la programmation Python",
+          enseignant: "Prof. Julie Lemoine",
+          matiere: "Informatique",
+          classe: "Seconde",
+          vignette: img3,
+          duree: "37 min",
+          vues: 3215
+        },
+      ]);
     return (
         <>
             <div className="courses-area ptb-100">
                 <div className="container">
                     <div className="section-title">
                         <span className="sub-title">Apprenez à votre propre rythme</span>
-                        <h2>Les cours populaires d'eLearniv</h2>
+                        <h2>Nos cours populaires </h2>
                         <p>Explorez tous nos cours et choisissez ceux qui vous conviennent pour vous inscrire et commencer à apprendre avec nous ! Nous vous garantissons que vous ne le regretterez jamais !</p>
                     </div>
                     <div className="row justify-content-center">
-                        <div className="col-lg-4 col-md-6">
-                            <div className="single-courses-box">
-                                <div className="courses-image">
-                                    <a href="single-course-1.html" className="d-block image">
-                                        <img src={img1} alt="image"/>
-                                    </a>
-                                    <a href="single-course-1.html" className="fav"><i className="flaticon-heart"></i></a>
-                                    <div className="price shadow">39€</div>
+
+                        <div className="container mx-auto px-6 pb-12">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                                  {coursFiltres.map((cours) => (
+                                    <CoursComponent cours={cours}/>
+                                  ))}
                                 </div>
-                                <div className="courses-content">
-                                    <div className="course-author d-flex align-items-center">
-                                        <img src={user1} className="rounded-circle" alt="image"/>
-                                        <span>Alex Morgan</span>
-                                    </div>
-                                    <h3><a href="single-course-1.html">Deep Learning A-Z™ : Réseaux de neurones artificiels pratiques</a></h3>
-                                    <p>Ce cours de niveau master est pour vous si vous cherchez à apprendre les sujets DL & ANN de fond en comble en peu de temps !</p>
-                                    <ul className="courses-box-footer d-flex justify-content-between align-items-center">
-                                        <li><i className='flaticon-agenda'></i> 15 Leçons</li>
-                                        <li><i className='flaticon-people'></i> 145 Étudiants</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-lg-4 col-md-6">
-                            <div className="single-courses-box">
-                                <div className="courses-image">
-                                    <a href="single-course-1.html" className="d-block image">
-                                        <img src={img2} alt="image"/>
-                                    </a>
-                                    <a href="single-course-1.html" className="fav"><i className="flaticon-heart"></i></a>
-                                    <div className="price shadow">49€</div>
-                                </div>
-                                <div className="courses-content">
-                                    <div className="course-author d-flex align-items-center">
-                                        <img src={user2} className="rounded-circle" alt="image"/>
-                                        <span>Sarah Taylor</span>
-                                    </div>
-                                    <h3><a href="single-course-1.html">Masterclass de programmation Java pour développeurs logiciels</a></h3>
-                                    <p>Java est le langage de programmation le plus stable et le plus utilisé pour les environnements mobiles, web et de bureau.</p>
-                                    <ul className="courses-box-footer d-flex justify-content-between align-items-center">
-                                        <li><i className='flaticon-agenda'></i> 20 Leçons</li>
-                                        <li><i className='flaticon-people'></i> 100 Étudiants</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-lg-4 col-md-6">
-                            <div className="single-courses-box">
-                                <div className="courses-image">
-                                    <a href="single-course-1.html" className="d-block image">
-                                        <img src={img3} alt="image"/>
-                                    </a>
-                                    <a href="single-course-1.html" className="fav"><i className="flaticon-heart"></i></a>
-                                    <div className="price shadow">59€</div>
-                                </div>
-                                <div className="courses-content">
-                                    <div className="course-author d-flex align-items-center">
-                                        <img src={user3} className="rounded-circle" alt="image"/>
-                                        <span>David Warner</span>
-                                    </div>
-                                    <h3><a href="single-course-1.html">Le cours de Data Science 2025 : Bootcamp complet en Data Science</a></h3>
-                                    <p>Nous avons conçu le cours de Bootcamp en Data Science pour vous offrir la meilleure expérience d'apprentissage en peu de temps.</p>
-                                    <ul className="courses-box-footer d-flex justify-content-between align-items-center">
-                                        <li><i className='flaticon-agenda'></i> 20 Leçons</li>
-                                        <li><i className='flaticon-people'></i> 150 Étudiants</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                                
+                                {coursFiltres.length === 0 && (
+                                  <div className="text-center py-12">
+                                    <p className="text-gray-500">Aucun cours ne correspond à votre recherche</p>
+                                  </div>
+                                )}
+                              </div>
+
                         <div className="col-lg-12 col-md-12">
                             <div className="courses-info">
                                 <p>Profitez des meilleures méthodes d'apprentissage et atteignez des compétences de niveau supérieur ! Vous êtes le créateur de votre propre carrière et nous vous guiderons à travers cela. <a href="profile-authentication.html">Inscrivez-vous gratuitement maintenant !</a>.</p>

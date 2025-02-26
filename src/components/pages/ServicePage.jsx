@@ -7,7 +7,7 @@ export default function ServicePage(){
     return(
         <>
             <Navbar/>
-            <Titre page={'Services'} titre={'Nos services'}/>
+            {/* <Titre page={'Services'} titre={'Nos services'}/> */}
             <Service/>
             <Testimonial/>
             <Footer/>

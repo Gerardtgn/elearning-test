@@ -4,23 +4,13 @@ import shape9 from '../../assets/img/shape/shape9.png';
 import shape2 from '../../assets/img/shape/shape2.png';
 import shape3 from '../../assets/img/shape/shape9.png';
 import shape4 from '../../assets/img/shape/shape4.png';
+import Titre from './Titre';
 
 export default function Vision() {
     return (
         <>
-            <div className="page-title-area">
-                <div className="container">
-                    <div className="page-title-content">
-                        <ul>
-                            <li><a href="index.html">Menu</a></li>
-                            <li>À Propos</li>
-                        </ul>
-                        <h2>En quoi consiste eLearning</h2>
-                    </div>
-                </div>
-                <div className="shape9"><img src={shape8} alt="image" /></div>
-            </div>
-
+            
+            <Titre page={'A Propos'} titre={'Tout savoir sur eLearning'}/>
             <div className="about-area-two pt-70 pb-100">
                 <div className="container">
                     <div className="row align-items-center">

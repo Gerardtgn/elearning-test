@@ -22,7 +22,7 @@ export default function Banner() {
                         <div className="col-lg-6 col-md-12">
                             <div className="main-banner-courses-list">
                                 <div className="row">
-                                    <div className="col-lg-6 col-md-6">
+                                    {/* <div className="col-lg-6 col-md-6">
                                         <div className="single-courses-box">
                                             <div className="courses-image">
                                                 <a href="single-course-1.html" className="d-block image">
@@ -44,8 +44,8 @@ export default function Banner() {
                                                 </ul>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div className="col-lg-6 col-md-6">
+                                    </div> */}
+                                    {/* <div className="col-lg-6 col-md-6">
                                         <div className="single-courses-box">
                                             <div className="courses-image">
                                                 <a href="single-course-1.html" className="d-block image">
@@ -67,7 +67,7 @@ export default function Banner() {
                                                 </ul>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> */}
                                 </div>
                                 <div className="banner-shape1" data-speed="0.06" data-revert="true"><img src={shape1} alt="image" /></div>
                                 <div className="banner-shape2" data-speed="0.06" data-revert="true"><img src={shape2} alt="image" /></div>
