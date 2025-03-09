@@ -5,70 +5,29 @@ import user1 from '../../assets/img/user/user1.jpg';
 import user2 from '../../assets/img/user/user2.jpg';
 import user3 from '../../assets/img/user/user3.jpg';
 import CoursComponent from './CoursComponent';
-import { useState } from 'react';
+import {getCourses} from '../../api/public';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 export default function Cours() {
-    const [coursFiltres, setCoursFiltres] = useState([
-        {
-          id: 1,
-          titre: "Introduction à la physique quantique",
-          enseignant: "Prof. Martin Dubois",
-          matiere: "Physique",
-          classe: "Terminale S",
-          vignette: img1,
-          duree: "45 min",
-          vues: 1245
-        },
-        {
-          id: 2,
-          titre: "Les équations du second degré",
-          enseignant: "Dr. Sophie Laurent",
-          matiere: "Mathématiques",
-          classe: "Seconde",
-          vignette: img2,
-          duree: "32 min",
-          vues: 987
-        },
-        {
-          id: 3,
-          titre: "La Révolution française",
-          enseignant: "Prof. Alexandre Moreau",
-          matiere: "Histoire",
-          classe: "4ème",
-          vignette: img3,
-          duree: "58 min",
-          vues: 2341
-        },
-        {
-          id: 4,
-          titre: "L'accord du participe passé",
-          enseignant: "Mme. Clara Benoit",
-          matiere: "Français",
-          classe: "6ème",
-          vignette: img1,
-          duree: "25 min",
-          vues: 1678
-        },
-        {
-          id: 5,
-          titre: "Les réactions d'oxydoréduction",
-          enseignant: "Dr. Thomas Mercier",
-          matiere: "Chimie",
-          classe: "Première S",
-          vignette: img2,
-          duree: "41 min",
-          vues: 893
-        },
-        {
-          id: 6,
-          titre: "Introduction à la programmation Python",
-          enseignant: "Prof. Julie Lemoine",
-          matiere: "Informatique",
-          classe: "Seconde",
-          vignette: img3,
-          duree: "37 min",
-          vues: 3215
-        },
-      ]);
+  const navigate = useNavigate();
+    const [coursFiltres, setcoursFiltres] = useState([]);
+    useEffect(() => {
+        fetchCourses();
+      }, []);
+      const fetchCourses = async () => {
+          
+          try {
+            const response = await getCourses(false);
+            setcoursFiltres(response || []);
+          } catch (err) {
+            //setError('Erreur lors de la récupération des données');
+            console.error('Erreur lors de la récupération des données:', err);
+          } 
+        };
+      const naviguerVersCours = () => {
+        //alert(`Navigation vers le cours #${id} - Cette fonctionnalité sera développée ultérieurement`);
+        navigate('/dashboard/teacher/courses');
+      };
     return (
         <>
             <div className="courses-area ptb-100">
@@ -83,7 +42,9 @@ export default function Cours() {
                         <div className="container mx-auto px-6 pb-12">
                                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                                   {coursFiltres.map((cours) => (
+                                    <div  key={cours.id}  onClick={naviguerVersCours} >
                                     <CoursComponent cours={cours}/>
+                                    </div>
                                   ))}
                                 </div>
                                 

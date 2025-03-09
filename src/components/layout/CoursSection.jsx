@@ -2,93 +2,50 @@ import React, { useState } from 'react';
 import img1 from '../../assets/img/courses/img1.jpg';
 import img2 from '../../assets/img/courses/img2.jpg';
 import img3 from '../../assets/img/courses/img3.jpg';
+import { useEffect, } from 'react';
 import CoursComponent from './CoursComponent';
+import { getCourses } from '../../api/public';
+import { useNavigate } from 'react-router-dom';
 
 const CoursSection = () => {
   // Données d'exemple pour les cours
-  const [cours, setCours] = useState([
-    {
-      id: 1,
-      titre: "Introduction à la physique quantique",
-      enseignant: "Prof. Martin Dubois",
-      matiere: "Physique",
-      classe: "Terminale S",
-      vignette: img1,
-      duree: "45 min",
-      vues: 1245
-    },
-    {
-      id: 2,
-      titre: "Les équations du second degré",
-      enseignant: "Dr. Sophie Laurent",
-      matiere: "Mathématiques",
-      classe: "Seconde",
-      vignette: img2,
-      duree: "32 min",
-      vues: 987
-    },
-    {
-      id: 3,
-      titre: "La Révolution française",
-      enseignant: "Prof. Alexandre Moreau",
-      matiere: "Histoire",
-      classe: "4ème",
-      vignette: img3,
-      duree: "58 min",
-      vues: 2341
-    },
-    {
-      id: 4,
-      titre: "L'accord du participe passé",
-      enseignant: "Mme. Clara Benoit",
-      matiere: "Français",
-      classe: "6ème",
-      vignette: img1,
-      duree: "25 min",
-      vues: 1678
-    },
-    {
-      id: 5,
-      titre: "Les réactions d'oxydoréduction",
-      enseignant: "Dr. Thomas Mercier",
-      matiere: "Chimie",
-      classe: "Première S",
-      vignette: img2,
-      duree: "41 min",
-      vues: 893
-    },
-    {
-      id: 6,
-      titre: "Introduction à la programmation Python",
-      enseignant: "Prof. Julie Lemoine",
-      matiere: "Informatique",
-      classe: "Seconde",
-      vignette: img3,
-      duree: "37 min",
-      vues: 3215
-    },
-  ]);
+  const navigate = useNavigate();
+  const [cours, setcours] = useState([]);
+      useEffect(() => {
+          fetchCourses();
+        }, []);
+        const fetchCourses = async () => {
+            
+            try {
+              const response = await getCourses(true);
+              setcours(response || []);
+            } catch (err) {
+              //setError('Erreur lors de la récupération des données');
+              console.error('Erreur lors de la récupération des données:', err);
+            } 
+          };
 
   // Filtres disponibles
   const [filtreMatiere, setFiltreMatiere] = useState("");
   const [filtreClasse, setFiltreClasse] = useState("");
   
   // Fonction pour extraire les matières uniques
-  const matieres = [...new Set(cours.map(cours => cours.matiere))];
+  const matieres = [...new Set(cours.map(cours => cours.chapitres_enseigne?.matieres_classe.matiere.nom))];
   
   // Fonction pour extraire les classes uniques
-  const classes = [...new Set(cours.map(cours => cours.classe))];
+  const classes = [...new Set(cours.map(cours => cours.chapitres_enseigne?.matieres_classe.classe.nom))];
   
   // Fonction pour filtrer les cours
   const coursFiltres = cours.filter(cours => {
-    if (filtreMatiere && cours.matiere !== filtreMatiere) return false;
-    if (filtreClasse && cours.classe !== filtreClasse) return false;
+    if (filtreMatiere && cours.chapitres_enseigne?.matieres_classe.matiere.nom !== filtreMatiere) return false;
+    if (filtreClasse && cours.chapitres_enseigne?.matieres_classe.classe.nom !== filtreClasse) return false;
     return true;
   });
   
   // Fonction pour rediriger vers la page du cours
-  const naviguerVersCours = (id) => {
-    alert(`Navigation vers le cours #${id} - Cette fonctionnalité sera développée ultérieurement`);
+  const naviguerVersCours = () => {
+    //alert(`Navigation vers le cours #${id} - Cette fonctionnalité sera développée ultérieurement`);
+    navigate('/dashboard/teacher/courses');
   };
 
   return (
@@ -149,9 +106,11 @@ const CoursSection = () => {
 
       {/* Grille de cours */}
       <div className="container mx-auto px-6 pb-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div  className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {coursFiltres.map((cours) => (
-            <CoursComponent cours={cours}/>
+            <div key={cours.id} onClick={() => naviguerVersCours()}>
+              <CoursComponent cours={cours}/>
+            </div>
           ))}
         </div>
         

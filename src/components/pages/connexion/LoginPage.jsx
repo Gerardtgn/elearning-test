@@ -31,7 +31,7 @@ export default function LoginPage() {
         //alert('Email ou mot de passe incorrect');
       }
     } catch (error) {
-      //console.log(error.response?.data);
+      console.log(error.response?.data);
       //alert("Erreur: " + error.response?.data?.message);
       Swal.fire({
               title: 'Erreur !',
@@ -84,14 +84,14 @@ export default function LoginPage() {
             </div>
             <button
               type="submit"
-              className="w-full mt-4 bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700"
+              className="w-full mt-4 bg-red-500 text-white py-2 rounded-lg hover:bg-red-600"
             >
               Se connecter
             </button>
           </form>
 
           {/* Connexion via Google & Facebook */}
-          <div className="mt-6 text-center">
+          {/* <div className="mt-6 text-center">
             <p className="text-gray-600">Ou connectez-vous avec</p>
             <div className="flex justify-center gap-4 mt-4">
               <button className="flex items-center bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">
@@ -104,7 +104,7 @@ export default function LoginPage() {
                 <Facebook className="mr-2" /> Facebook
               </button>
             </div>
-          </div>
+          </div> */}
 
           {/* Redirection vers l'inscription */}
           <div className="mt-6 text-center">

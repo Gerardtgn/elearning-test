@@ -1,7 +1,8 @@
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import { FileText, Heart, GraduationCap, DownloadIcon } from "lucide-react";
-
+import URL from '../../../../../../../api/api';
+import TDComponent from "../../../../../../layout/TDComponent";
 export default function ExerciceComponent ({exercice}){
     const location = useLocation();
     const user = JSON.parse(localStorage.getItem('user'));
@@ -20,13 +21,13 @@ export default function ExerciceComponent ({exercice}){
                     <div className="mt-6">
                       <div className="flex items-center space-x-3 mb-4">
                         <img
-                          src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                          src={`${URL}/storage/${exercice.user.image}`}
                           alt="Alex Morgan"
                           className="w-10 h-10 rounded-full"
                         />
                         <div>
-                          <p className="text-sm font-semibold text-gray-900">{exercice.chapitres_enseigne.matieres_classes_enseignant.user.nom} {exercice.chapitres_enseigne.matieres_classes_enseignant.user.prenom}</p>
-                          <p className="text-sm text-gray-500">{exercice.chapitres_enseigne.matieres_classes_enseignant.matiere.nom}-{exercice.chapitres_enseigne.matieres_classes_enseignant.classe.nom}</p>
+                          <p className="text-sm font-semibold text-gray-900">{exercice.user.nom} {exercice.user.prenom}</p>
+                          <p className="text-sm text-gray-500">{exercice.chapitres_enseigne.matieres_classe.matiere.nom}-{exercice.chapitres_enseigne.matieres_classe.classe.nom}</p>
                         </div>
                       </div>
                       <h3 className="text-xl font-bold text-gray-900 mb-2">{exercice.titre}</h3>
@@ -34,7 +35,7 @@ export default function ExerciceComponent ({exercice}){
                       <div className="flex items-center justify-between">
                         {/* <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800">
                           <GraduationCap className="w-4 h-4 mr-2" />
-                          {user.profile != 'apprenant' && exercice.chapitres_enseigne.matieres_classes_enseignant.matiere.nom}
+                          {user.profile != 'apprenant' && exercice.chapitres_enseigne.matieres_classe.matiere.nom}
                         </span> */}
                         <a 
                           href={`http://localhost:8000/storage/${exercice.contenu}`} 

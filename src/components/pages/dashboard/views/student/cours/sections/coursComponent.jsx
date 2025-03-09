@@ -3,7 +3,7 @@ import { Heart, BookOpen, Users } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns';
 import { fr } from 'date-fns/locale';
 import { useNavigate } from 'react-router-dom';
-
+import { BASE_URL } from '../../../../../../../api/api';
 const CoursComponent = ({ course }) => {
     const navigate = useNavigate();
   const publishedDate = new Date(course.created_at);
@@ -19,7 +19,7 @@ const CoursComponent = ({ course }) => {
           className="h-48 w-full object-cover"  
           controls
         >
-          <source src={`http://localhost:8000/storage/${course.contenu}`} type="video/mp4" />
+          <source src={`${BASE_URL}/storage/${course.contenu}`} type="video/mp4" />
           Votre navigateur ne supporte pas la lecture de vidéos.
         </video>
         <div className="absolute top-4 right-4">
@@ -34,7 +34,7 @@ const CoursComponent = ({ course }) => {
           <div className="flex items-center mb-4">
             <img 
               className="h-10 w-10 rounded-full object-cover" 
-              src={'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'} 
+              src={course.image_descriptive? course.image_descriptive:'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'} 
               alt={course.chapitres_enseigne.matieres_classes_enseignant.user.nom} 
             />
             <p className="ml-3 text-sm font-medium text-indigo-600">{course.chapitres_enseigne.matieres_classes_enseignant.user.nom} {course.chapitres_enseigne.matieres_classes_enseignant.user.prenom} </p>

@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Upload, BookOpen, GraduationCap, Book, FileText } from 'lucide-react';
 import axios from 'axios';
-
+import { addTD } from '../../../../../../api/td';
+import Swal from 'sweetalert2';
 const CreateExercice = () => {
   const token = localStorage.getItem('token');
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [rawData, setRawData] = useState([]);
   const [formData, setFormData] = useState({
     title: '',
@@ -25,6 +26,7 @@ const CreateExercice = () => {
   }, []);
 
   const fetchInitialData = async () => {
+    setLoading(true);
     try {
       const response = await axios.get('http://localhost:8000/api/get-chapitresEnseignes', {
         headers: {
@@ -36,32 +38,35 @@ const CreateExercice = () => {
     } catch (error) {
       console.error('Erreur lors du chargement des données:', error.response?.data);
     }
+    finally{
+      setLoading(false);
+    }
   };
 
   // Extraire les classes uniques
   const classes = Array.from(new Set(
-    rawData.map(item => item.matieres_classes_enseignant.classe.id)
+    rawData.map(item => item.matieres_classe.classe.id)
   )).map(classId => {
-    const item = rawData.find(item => item.matieres_classes_enseignant.classe.id === classId);
-    return item.matieres_classes_enseignant.classe;
+    const item = rawData.find(item => item.matieres_classe.classe.id === classId);
+    return item.matieres_classe.classe;
   });
 
   // Obtenir les matières pour la classe sélectionnée
   const matieres = formData.class_id ? Array.from(new Set(
     rawData
-      .filter(item => item.matieres_classes_enseignant.classe.id === parseInt(formData.class_id))
-      .map(item => item.matieres_classes_enseignant.matiere.id)
+      .filter(item => item.matieres_classe.classe.id === parseInt(formData.class_id))
+      .map(item => item.matieres_classe.matiere.id)
   )).map(matiereId => {
-    const item = rawData.find(item => item.matieres_classes_enseignant.matiere.id === matiereId);
-    return item.matieres_classes_enseignant.matiere;
+    const item = rawData.find(item => item.matieres_classe.matiere.id === matiereId);
+    return item.matieres_classe.matiere;
   }) : [];
 
   // Obtenir les chapitres pour la matière sélectionnée
   const chapitres = formData.matiere_id ? Array.from(new Set(
     rawData
       .filter(item => 
-        item.matieres_classes_enseignant.classe.id === parseInt(formData.class_id) &&
-        item.matieres_classes_enseignant.matiere.id === parseInt(formData.matiere_id)
+        item.matieres_classe.classe.id === parseInt(formData.class_id) &&
+        item.matieres_classe.matiere.id === parseInt(formData.matiere_id)
       )
       .map(item => item.chapitre.id)
   )).map(chapitreId => {
@@ -108,27 +113,45 @@ const CreateExercice = () => {
     setLoading(true);
 
     try {
-        const chapitre = rawData.find(item => item.chapitre.id === parseInt(formData.chapitre_id));
+      //Treouver l'enregistrement dans la table chapitres_enseignes dont 
+      //chapitre_id correspondant à l'id du chapitre sélectionné
+      //Ce qui me permettra de faire l'enregistrement dans ma base de dnnée
+        const chapitres_enseigne_selected = rawData.find(item => item.chapitre.id === parseInt(formData.chapitre_id));
         const formDataToSend = new FormData();
         formDataToSend.append('titre', formData.title);
         formDataToSend.append('description', formData.description);
         formDataToSend.append('contenu', contenuFile); // Ajout du fichier contenu
         formDataToSend.append('correction', correctionFile); // Ajout du fichier correction
-        formDataToSend.append('chapitres_enseigne_id', chapitre.id);
+        formDataToSend.append('chapitres_enseigne_id', chapitres_enseigne_selected.id);
+        formDataToSend.append('type', 'exercice');
         console.log(contenuFileName);
-        const response = await axios.post('http://localhost:8000/api/store-exercices', formDataToSend, {
-            headers: {
-               'Content-Type': 'multipart/form-data',
-                'Authorization': `Bearer ${token}`
-            }});
-      alert('Exercice créé avec succès');
-      navigate('/dashboard/teacher/exercices');
+        const response = await addTD(formDataToSend);
+       Swal.fire({
+               title: 'Succès !',
+               text: 'Exercice partagé avec succès.',
+               icon: 'success',
+               confirmButtonText: 'OK'
+             });
+        navigate('/dashboard/teacher/exercices');
     } catch (error) {
       console.error('Erreur lors de la création de l\'exercices:', error);
+      Swal.fire({
+                title: 'Erreur !',
+                text: 'Impossible de partager l\'exercice',
+                icon: 'error',
+                confirmButtonText: 'OK'
+              });
     } finally {
       setLoading(false);
     }
   };
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 py-8">

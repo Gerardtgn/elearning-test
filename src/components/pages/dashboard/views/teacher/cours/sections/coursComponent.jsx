@@ -30,7 +30,7 @@ const CoursComponent = ({ course }) => {
           </button>
         </div>
         <div className="absolute bottom-4 left-4 bg-white px-3 py-1 rounded-full shadow-md">
-          <span className="text-sm font-medium text-gray-900">{user.profile !== 'apprenant' && course.chapitres_enseigne.matieres_classes_enseignant.classe.nom}</span>
+          <span className="text-sm font-medium text-gray-900">{user.profile !== 'apprenant' && course.chapitres_enseigne.matieres_classe.classe.nom}</span>
         </div>
       </div>
 
@@ -40,12 +40,12 @@ const CoursComponent = ({ course }) => {
             <img 
               className="h-10 w-10 rounded-full object-cover" 
               src={'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'} 
-              alt={course.chapitres_enseigne.matieres_classes_enseignant.user.nom} 
+              alt={course.user.nom} 
             />
-            <p className="ml-3 text-sm font-medium text-indigo-600">{course.chapitres_enseigne.matieres_classes_enseignant.user.nom} {course.chapitres_enseigne.matieres_classes_enseignant.user.prenom}</p>
+            <p className="ml-3 text-sm font-medium text-indigo-600">{course.user.nom} {course.user.prenom}</p>
           </div>
           <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">
-            {course.chapitres_enseigne.matieres_classes_enseignant.matiere.nom} - {course.chapitres_enseigne.chapitre.nom}
+            {course.chapitres_enseigne.matieres_classe.matiere.nom} - {course.chapitres_enseigne.chapitre.nom}
           </h3>
           <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">
             <a onClick={() => handleCourseClick(course)}>

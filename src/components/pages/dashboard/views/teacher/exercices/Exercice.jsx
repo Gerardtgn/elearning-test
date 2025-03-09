@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { Heart, BookOpen, Users, Plus } from 'lucide-react';
 import axios from 'axios';
 import ExerciceComponent from './sections/ExerciceSection';
-import { use } from 'react';
-
+import { getTD } from '../../../../../../api/td';
+import TDComponent from '../../../../../layout/TDComponent';
 const Exercice = () => {
   const user = JSON.parse(localStorage.getItem('user'));
   const navigate = useNavigate();
@@ -20,17 +20,13 @@ const Exercice = () => {
   const fetchExercices = async () => {
     try {
       
-      const response = await axios.get(user.profile=='enseignant'?'http://localhost:8000/api/get-teacherExercices': 'http://localhost:8000/api/get-studentExercices', 
-      {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-    });
-      setExercices(response.data);
+      const response = await getTD('exercice', user.profile_id);
+      setExercices(response);
       console.log(response.data);
     } catch (err) {
       setError('Erreur lors du chargement des Exercices');
       console.log('erreur' + err);
+      
       
     }
     finally{
@@ -99,7 +95,69 @@ const Exercice = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {exercices.map((exercice) => (
            <div key={exercice.id} onClick={()=> handleExerciceClick(exercice) }>
-             <ExerciceComponent exercice={exercice}  />
+             <div 
+                key={td.id} 
+                className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
+              >
+                <div className="p-4 border-b">
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <h3 className="font-bold text-lg mb-1" style={{ color: "#fe4a55" }}>
+                        {td.titre}
+                      </h3>
+                      <p className="text-gray-700 text-sm">{td.user.nom} {td.user.prenom}</p>
+                    </div>
+                    <div className="flex items-center justify-center w-12 h-12 bg-gray-100 rounded-full text-lg font-bold uppercase" style={{ color: "#fe4a55" }}>
+                      {td.format}
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="p-4">
+                  <div className="flex flex-wrap gap-2 mb-3">
+                    <span className="bg-gray-100 text-gray-800 text-xs font-medium px-2 py-1 rounded">
+                      {td.chapitres_enseigne.matieres_classe.matiere.nom}
+                    </span>
+                    <span className="bg-gray-100 text-gray-800 text-xs font-medium px-2 py-1 rounded">
+                    {td.chapitres_enseigne.matieres_classe.classe.nom}
+                    </span>
+                    {td.correction ? (
+                      <span className="bg-green-100 text-green-800 text-xs font-medium px-2 py-1 rounded">
+                        Avec correction
+                      </span>
+                    ) : (
+                      <span className="bg-yellow-100 text-yellow-800 text-xs font-medium px-2 py-1 rounded">
+                        Sans correction
+                      </span>
+                    )}
+                  </div>
+                  
+                  <div className="text-gray-500 text-xs mb-4">
+                    <div>Taille: {'2MO'}</div>
+                    <div>Mis en ligne le: {td.created_at}</div>
+                  </div>
+                  
+                  <div className="flex gap-2">
+                    <button 
+                      className="flex-1 p-2 text-white rounded-md text-sm font-medium"
+                      style={{ backgroundColor: "#fe4a55" }}
+                      //onClick={}
+                    >
+                      Télécharger
+                    </button>
+                    
+                    {td.correction? (
+                      <button 
+                        className="flex-1 p-2 border text-sm font-medium rounded-md hover:bg-gray-50"
+                        style={{ color: "#fe4a55", borderColor: "#fe4a55" }}
+                        //onClick={() =>{} }
+                      >
+                        Voir correction
+                      </button>
+                    ): ''}
+                  </div>
+                </div>
+              </div>
             </div>
           ))}
         </div>

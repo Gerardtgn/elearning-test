@@ -29,6 +29,21 @@ import ArticleDetail from './components/pages/ArticleDetail';
 import BlogPage from './components/pages/BlogPage';
 import TeacherDetailPage from './components/pages/TeacherDetailPage';
 import ContactPage from './components/pages/ContactPage';
+import Profile from './components/pages/dashboard/views/profiles/Profile';
+import Level from './components/pages/dashboard/views/levels/Level';
+import Matiere from './components/pages/dashboard/views/matieres/Matiere';
+import Chapitre from './components/pages/dashboard/views/chapitres/Chapitre';
+import Classe from './components/pages/dashboard/views/classes/Classe';
+import AjouterMatiereClasse from './components/pages/dashboard/views/admin/AjouterMatiereClasse';
+import AjouterChapitreMatiere from './components/pages/dashboard/views/admin/AjouterChapitreMatiere';
+import NotificationsPage from './components/pages/dashboard/views/NotificationsPage';
+import PaymentPage from './components/pages/dashboard/views/PaymentPage';
+import Offre from './components/pages/dashboard/views/offres/Offre';
+import OffreClasse from './components/pages/dashboard/views/offreClasse/OffreClasse';
+import AbonnementPage from './components/pages/AbonnementPage';
+import Ecole from './components/pages/dashboard/views/ecole/Ecole';
+import PaymentSuccessPage from './components/pages/PayementSuccesPage';
+import Abonnement from './components/pages/dashboard/views/abonnement/Abonnement';
 function App() {
   const user = JSON.parse(localStorage.getItem('user'));
 
@@ -48,8 +63,12 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/pay" element={<PaymentPage />}/>
+        <Route path="/success" element={<PaymentSuccessPage />}/>
         <Route path='/pending-page' element={<PendingPage/>}/>
+        <Route path='/abonnement' element={<AbonnementPage/>}/>
         <Route path="/dashboard/*" element={<PrivateRoute />}>
+          
           <Route path="" element={<DashboardLayout />}>
             <Route
               index
@@ -59,9 +78,25 @@ function App() {
                 ) : user && user.profile === 'apprenant'?(
                   <StudentDashboard />
                 ) : 
-                <AdminDashboard/>
+                <AdminDashboard/> 
               }
             />
+            {/* section profile */}
+
+            <Route path="profiles" element={<Profile />} />
+
+            <Route path="levels" element={<Level />} />
+            <Route path="matieres" element={<Matiere />} />
+            <Route path="ecoles" element={<Ecole />} />
+            <Route path="chapitres" element={<Chapitre />} />
+            <Route path="classes" element={<Classe />} />
+            <Route path="offres" element={<Offre />} />
+            <Route path="offre-classe" element={<OffreClasse />} />
+            <Route path="add-matieres" element={<AjouterMatiereClasse />} />
+            <Route path="add-chapitres" element={<AjouterChapitreMatiere />} />
+            <Route path="abonnements" element={<Abonnement />} />
+            <Route path="notifications" element={<NotificationsPage />} />
+
             {/* Section des cours */}
             <Route path="teacher/courses" element={<Cours />} />
             <Route path="student/courses" element={<Cours />} />
